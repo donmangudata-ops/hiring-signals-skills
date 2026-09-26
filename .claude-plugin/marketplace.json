@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "hiring-signals-skills",
+  "owner": {
+    "name": "Don Mangu",
+    "url": "https://github.com/donmangudata-ops"
+  },
+  "description": "The Hiring Signals Skills, installable as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "hiring-signals-skills",
+      "source": "./",
+      "description": "Account research, hiring signals, competitor hiring tracking and tech job search for AI agents, from live company job boards and homepages. Runs paid Apify Actors on your own Apify account; prices in the README.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "keywords": ["hiring-signals", "account-research", "sales", "sdr", "prospecting", "buying-signals", "tech-stack", "competitor-monitoring", "job-search", "career-pages", "greenhouse", "lever", "ashby", "workday", "apify"]
+    }
+  ]
+}
