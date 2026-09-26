@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+# script outputs
+account_briefs.md
+account_briefs.json
+hiring_signals.csv
+hiring_signals.json
+hiring_signals.md
+hiring_changes.md
+hiring_changes.json
+job_search.csv
+job_search.md
