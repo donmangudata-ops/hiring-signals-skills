@@ -225,6 +225,16 @@ class ScriptTests(unittest.TestCase):
         self.assertEqual(self.calls()[0]["cap"], "1.0")
 
 
+class CsvSafeTests(unittest.TestCase):
+    def test_formula_cells_are_neutralized(self):
+        import apify_common as ac
+        for bad in ("=HYPERLINK(\"http://x\")", "+1+1", "-2", "@SUM(A1)", "\tx", "\rx"):
+            self.assertEqual(ac.csv_safe(bad), "'" + bad)
+        for ok in ("Senior Engineer", "", 42, None, "a=b"):
+            self.assertEqual(ac.csv_safe(ok), ok)
+        self.assertEqual(ac.csv_safe_rows([{"title": "=cmd", "n": 3}]), [{"title": "'=cmd", "n": 3}])
+
+
 class ValidatorTests(unittest.TestCase):
     def fresh(self):
         tmp = Path(tempfile.mkdtemp())
