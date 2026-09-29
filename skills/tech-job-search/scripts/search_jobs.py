@@ -91,7 +91,7 @@ def main():
     with open(a.out + ".csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=COLUMNS, extrasaction="ignore")
         w.writeheader()
-        w.writerows(jobs)
+        w.writerows(ac.csv_safe_rows(jobs))
     lines = [f"# {len(jobs)} jobs, newest first", ""]
     for j in jobs:
         pay = ""
