@@ -117,7 +117,7 @@ def main():
     with open(a.out + ".csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=list(merged[0].keys()))
         w.writeheader()
-        w.writerows(merged)
+        w.writerows(ac.csv_safe_rows(merged))
     md = [f"# Hiring signals ({len(merged)} accounts)", "",
           f"Filters: {json.dumps({k: v for k, v in jobs_input.items() if k not in ('companies', 'outputMode')}) or 'none'}", "",
           "| # | Company | Matching open jobs | Posted last 30 days | Leaders hiring | Watched tools | Status |",
