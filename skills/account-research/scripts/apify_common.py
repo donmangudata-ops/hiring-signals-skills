@@ -166,6 +166,25 @@ def names(items, key="name"):
     return out
 
 
+CSV_FORMULA_START = ("=", "+", "-", "@", "\t", "\r")
+
+
+def csv_safe(value):
+    """Neutralize spreadsheet formulas in third-party text before it goes into a CSV cell.
+
+    Job titles and page text come from other people's sites. A cell that starts with
+    = + - @ (or a tab or carriage return) runs as a formula when the CSV is opened in
+    Excel or Google Sheets, so such cells get a leading single quote.
+    """
+    if isinstance(value, str) and value.startswith(CSV_FORMULA_START):
+        return "'" + value
+    return value
+
+
+def csv_safe_rows(rows):
+    return [{k: csv_safe(v) for k, v in r.items()} for r in rows]
+
+
 def write_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
